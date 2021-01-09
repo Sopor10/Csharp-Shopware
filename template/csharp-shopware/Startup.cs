@@ -15,6 +15,8 @@ public class Startup
     {
         app.Run(async (context) =>
         {
+            context.Response.Headers.Add("Access-Control-Allow-Origin", "http://konfigurator.lars-lehmann.info");
+
             if (context.Request.Path != "/")
             {
                 context.Response.StatusCode = 404;
@@ -33,7 +35,6 @@ public class Startup
             {
                 var (status, text) = await new FunctionHandler().Handle(context.Request);
                 context.Response.StatusCode = status;
-                context.Response.Headers.Add("Access-Control-Allow-Origin", "http://konfigurator.lars-lehmann.info/");
                 if (!string.IsNullOrEmpty(text))
                     await context.Response.WriteAsync(text);
             }
