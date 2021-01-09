@@ -33,6 +33,7 @@ public class Startup
             {
                 var (status, text) = await new FunctionHandler().Handle(context.Request);
                 context.Response.StatusCode = status;
+                context.Response.Headers.Add("Access-Control-Allow-Origin", "http://konfigurator.lars-lehmann.info/");
                 if (!string.IsNullOrEmpty(text))
                     await context.Response.WriteAsync(text);
             }
