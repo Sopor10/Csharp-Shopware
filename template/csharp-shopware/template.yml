@@ -1,0 +1,2 @@
+language: csharp-shopware
+fprocess: dotnet ./root.dll
